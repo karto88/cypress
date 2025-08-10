@@ -1,0 +1,18 @@
+
+[
+{
+  "username": "Admin",
+  "password": "admin123",
+  "expected": "PIM"
+},
+{
+  "username": "asdas",
+  "password": "ads",
+  "expected1": "urze46"
+},
+{
+  "username": "lkjaoi23",
+  "password": "sdf354",
+  "expected2": "sdfew4"
+}
+]
