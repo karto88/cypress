@@ -1,5 +1,5 @@
 
-const {generateRandomEmail} = require ('../support/generatemail');
+const {generateRandomEmail} = require ('../../support/generatemail');
 
 
 describe('RangeHRM login', () => {
@@ -79,7 +79,7 @@ it('live list - Clicks next month button 4 times right', () => {
     .should('have.text','December')
   })
 
-  it('select all dropdowns', () => {
+  it.only('select all dropdowns', () => {
 
      cy.loginapp('Admin','admin123')
 
@@ -129,7 +129,7 @@ it('live list - Clicks next month button 4 times right', () => {
     })
 
   })
-  it.only ('write user info - contact details', () => {
+  it ('write user info - contact details', () => {
 
    cy.loginapp('Admin','admin123')
 
