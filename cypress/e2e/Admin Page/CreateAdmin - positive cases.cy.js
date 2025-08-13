@@ -3,7 +3,7 @@ const {rendomname} = require  ('../../support/generate name.js');
 import {selectDropdown} from '..//..//support/commands.js'
 
 
-
+const username = 'david';
 describe('admin page - create', () => {
 
     it('create admin', () => {
@@ -15,13 +15,13 @@ describe('admin page - create', () => {
 
 describe('delete admin', () => {
 
-    it.only('delete admin with delete button', () => {
+    it('delete admin with delete button', () => {
 
     cy.createAdminUser();
 
         cy.get(':nth-child(1) > .oxd-main-menu-item').click();
         
-const username = 'david';
+
 // find delete button with user name
         cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
         .parents('.oxd-table-row') .find('button').first().click();
@@ -79,6 +79,50 @@ describe ('edit admin', () => {
         }) 
     })
 
+    it('change password - admin', () => {
+
+        cy.createAdminUser();
+        
+        // edit button
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+        .parents('.oxd-table-row') .find('button').last().click();
+        cy.get('.oxd-checkbox-input > .oxd-icon').click();
+        cy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('Admin1234')
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('Admin1234')
+        cy.get('.oxd-button--secondary').click()
+        cy.contains('Success').should('be.visible')
+
+         // find delete button with user name - and delete with check box
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+        .parents('.oxd-table-row').find('span.oxd-checkbox-input').click()
+
+        cy.get('.orangehrm-horizontal-padding > div > .oxd-button').click();
+        cy.get('.orangehrm-modal-footer > .oxd-button--label-danger').click();
+
+//check deleted user
+         cy.get('.oxd-table-body > div').filter(`:contains("${username}")`)
+        .should('not.exist');
+
     })
+
+    it.only('change admin name', () => {
+
+        cy.createAdminUser();
+
+
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+        .parents('.oxd-table-row') .find('button').last().click();
+        cy.get(':nth-child(2) > .oxd-input').clear().type('giorgi');
+        cy.get('.oxd-button--secondary').click();
+
+     const updatename = "giorgi" 
+  
+       cy.contains('.oxd-table-body > div', updatename).should('exist');
+
+    })
+
+})
 
     
