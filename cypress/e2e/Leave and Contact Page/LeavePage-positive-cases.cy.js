@@ -165,3 +165,53 @@ it('live list - Clicks next month button 4 times right', () => {
     })
 
 })
+
+
+
+
+/*cy.loginapp('Admin','admin123');
+
+        cy.get(':nth-child(1) > .oxd-main-menu-item').click();
+        cy.get('.orangehrm-header-container > .oxd-button').click();
+
+        //user role
+        selectDropdown(':nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
+        cy.xpath('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div[2]')
+        .should('contain','Admin').click()
+
+        //empoyee name
+        cy.get('.oxd-autocomplete-text-input > input',).type('Rahul',);
+        cy.wait(5000)
+        cy.xpath('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div[2]')
+        .first().click();
+
+        // status
+        selectDropdown(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-select-wrapper > .oxd-select-text')
+        cy.xpath('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div[2]')
+        .should('contain','Disabled').click();
+
+        //user name
+        cy.get(':nth-child(4) > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('david');
+
+        // password
+        cy.get('.user-password-cell > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('david123')
+
+        //confirm password
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('david123')
+
+        //save button
+        cy.get('.oxd-button--secondary').click();
+
+const username = 'david';
+      cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+      .should('be.visible')*/
+
+
+
+
+
+
+
