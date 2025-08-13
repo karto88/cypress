@@ -1,14 +1,26 @@
 
 const {rendomname} = require  ('../../support/generate name.js');
-import {selectDropdown} from '..//..//support/commands.js'
+import {selectDropdown} from '../../support/commands.js'
 
 
 const username = 'david';
 describe('admin page - create', () => {
 
-    it('create admin', () => {
+    it.only('create admin', () => {
 
         cy.createAdminUser();
+
+        // find delete button with user name
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+        .parents('.oxd-table-row') .find('button').first().click();
+// delete button
+        cy.get('.oxd-button--label-danger').click();
+        cy.get('.oxd-table-body > div').filter(`:contains("${username}")`)
+        .should('not.exist')
+
+        //check deleted user
+         cy.get('.oxd-table-body > div').filter(`:contains("${username}")`)
+        .should('not.exist');
 
     })
 })    
@@ -107,7 +119,7 @@ describe ('edit admin', () => {
 
     })
 
-    it.only('change admin name', () => {
+    it('change admin name', () => {
 
         cy.createAdminUser();
 
