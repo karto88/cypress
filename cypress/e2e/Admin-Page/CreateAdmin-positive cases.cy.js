@@ -6,7 +6,7 @@ import {selectDropdown} from '../../support/commands.js'
 const username = 'david';
 describe('admin page - create', () => {
 
-    it.only('create admin', () => {
+    it('create admin', () => {
 
         cy.createAdminUser();
 
@@ -86,9 +86,19 @@ describe ('edit admin', () => {
 
     const infotext = ["Disabled","ESS","david"]
         infotext.forEach(name => {
-            cy.get('.oxd-table-body').contains(name)
-            .should('be.visible');
-        }) 
+         cy.get('.oxd-table-body').contains(name)
+        .should('be.visible');
+        })
+
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
+        .parents('.oxd-table-row') .find('button').first().click();
+// delete button
+        cy.get('.oxd-button--label-danger').click();
+        cy.get('.oxd-table-body > div').filter(`:contains("${username}")`)
+        .should('not.exist')
+
+     
+    
     })
 
     it('change password - admin', () => {
@@ -119,7 +129,7 @@ describe ('edit admin', () => {
 
     })
 
-    it('change admin name', () => {
+    it.only('change admin name', () => {
 
         cy.createAdminUser();
 
@@ -132,6 +142,17 @@ describe ('edit admin', () => {
      const updatename = "giorgi" 
   
        cy.contains('.oxd-table-body > div', updatename).should('exist');
+
+// find delete button with user name - and delete with check box
+        cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(updatename)
+        .parents('.oxd-table-row').find('span.oxd-checkbox-input').click()
+
+        cy.get('.orangehrm-horizontal-padding > div > .oxd-button').click();
+        cy.get('.orangehrm-modal-footer > .oxd-button--label-danger').click();
+
+//check deleted user
+         cy.get('.oxd-table-body > div').filter(`:contains("${updatename}")`)
+        .should('not.exist');
 
     })
 
