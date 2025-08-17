@@ -2,11 +2,12 @@
 const {rendomname} = require  ('../../support/generate name.js');
 import {selectDropdown} from '../../support/commands.js'
 
-
 const username = 'david';
+
+
 describe('admin page - create', () => {
 
-    it('create admin', () => {
+    it.only('create admin', () => {
 
         cy.createAdminUser();
 
@@ -129,7 +130,7 @@ describe ('edit admin', () => {
 
     })
 
-    it.only('change admin name', () => {
+    it('change admin name', () => {
 
         cy.createAdminUser();
 

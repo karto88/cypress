@@ -26,7 +26,7 @@ Cypress.Commands.add('login', (email) => {
 //----------------------
 Cypress.Commands.add("loginapp", (email,password) => {
      cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-  cy.get('[name="username"]').type(email)
+  cy.get('[name="username"]', {timeout:10000}).should('be.visible').type(email)
   cy.get('[name="password"]').type(password)
   cy.get('[type="submit"]').click()
 })
@@ -55,7 +55,7 @@ Cypress.Commands.add('createAdminUser', () => {
       .should('contain','Admin').click()
 
     // employee name
-    cy.get('.oxd-autocomplete-text-input > input').type('Rahul');
+    cy.get('.oxd-autocomplete-text-input > input').type('R');
     cy.wait(5000)
     cy.xpath('//*[@id="app"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[2]/div/div[2]/div/div[2]')
       .first().click();
@@ -81,5 +81,9 @@ Cypress.Commands.add('createAdminUser', () => {
     cy.get('.oxd-table-body', { timeout: 10000 }).find('div').contains(username)
       .should('be.visible');
 });
+
+Cypress.Commands.add('delete admin', () => {
+  
+})
 
  
