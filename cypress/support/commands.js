@@ -15,6 +15,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 /// <reference types="cypress" />
+import 'cypress-file-upload'
 
 Cypress.Commands.add('login', (email) => {
   cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
@@ -82,8 +83,6 @@ Cypress.Commands.add('createAdminUser', () => {
       .should('be.visible');
 });
 
-Cypress.Commands.add('delete admin', () => {
-  
-})
+
 
  

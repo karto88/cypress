@@ -1,17 +1,16 @@
 
 class Login {
 
-    setUserName (username)
-    {
-        cy.get('input[placeholder="Username"]').type(username)
+    setusername (username1) {
+        cy.get('[name="username"]').type(username1)
     }
-     setPassword (password)
-    {
-        cy.get('input[placeholder="Password"]').type(password)
+
+    setpassword(password1){
+        cy.get('[name="password"]').type(password1)
     }
-     selectButton (select)
-    {
-        cy.get('button[type="submit"]').click()
+    loginbutton(login){
+        cy.get('[type="submit"]').click()
     }
-}
-export default Login;
+} 
+
+export default Login
