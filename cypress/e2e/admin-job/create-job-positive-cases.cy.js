@@ -3,40 +3,36 @@
 import Login from '../../../PageObject/LoginPage.js'
 
 
-describe('amin create job', () => {
+describe('admin create job', () => {
+
+   beforeEach(() => {
+        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+        cy.get('[name="username"]', { timeout: 10000 }).should('be.visible')
+
+        const login = new Login();
+        login.setusername('Admin')
+        login.setpassword('admin123')
+        login.loginbutton()
+})
 
     const jobtext = "qa manual tester"
     const renametitle = "qa manual software tester"
 
     it('create job', () => {
 
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-        
-        const login = new Login();
-        login.setusername('Admin')
-        login.setpassword('admin123')
-        login.loginbutton()
-
-       cy.createjob();
+        cy.createjob();
 
         cy.contains('Success').should('be.visible')
 
         cy.get('.orangehrm-container', {timeout:5000}).find('div').contains(jobtext)
         .should('be.visible')
 
-
-
     })
 
-    it('delete job', () => {
 
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    it('admin delete job', () => {
 
-        const login = new Login();
-        login.setusername('Admin')
-        login.setpassword('admin123')
-        login.loginbutton();
-
+       
         cy.get(':nth-child(1) > .oxd-main-menu-item').click();
     //job dropdown 
         cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
@@ -50,13 +46,6 @@ describe('amin create job', () => {
     })
 
     it('rename job title', () => {
-
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-
-        const login = new Login();
-        login.setusername('Admin')
-        login.setpassword('admin123')
-        login.loginbutton()
 
         cy.createjob();
 
@@ -77,14 +66,7 @@ describe('amin create job', () => {
 
     })
 
-    it('edit description', () => {
-
-        cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-
-        const login = new Login();
-        login.setusername('Admin');
-        login.setpassword('admin123')
-        login.loginbutton();
+    it('edit job description', () => {
 
         cy.createjob();
 
@@ -113,13 +95,6 @@ describe('amin create job', () => {
 
     it('click show more', () => {
 
-         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-
-         const login = new Login();
-         login.setusername('Admin')
-         login.setpassword('admin123')
-         login.loginbutton()
-
          cy.createjob();
 
          cy.get('.orangehrm-container', {timeout:5000}).contains('div', jobtext)
@@ -130,14 +105,7 @@ describe('amin create job', () => {
 
     })
 
-    it.only('click show less', () => {
-
-         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-
-         const login = new Login();
-         login.setusername('Admin')
-         login.setpassword('admin123')
-         login.loginbutton()
+    it('click show less', () => {
 
          cy.createjob();
 
