@@ -8,7 +8,7 @@ class Login {
     setpassword(password1){
         cy.get('[name="password"]').type(password1)
     }
-    loginbutton(login){
+    loginbutton(){
         cy.get('[type="submit"]').click()
     }
 } 

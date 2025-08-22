@@ -83,6 +83,41 @@ Cypress.Commands.add('createAdminUser', () => {
       .should('be.visible');
 });
 
+Cypress.Commands.add('createjob',() => {
+
+  cy.get(':nth-child(1) > .oxd-main-menu-item').click()
+
+        //job dropdown 
+        cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+        cy.get('.oxd-dropdown-menu').find('li').eq(0).click()
+
+        cy.get('.oxd-button').click()
+
+        cy.get(':nth-child(2) > .oxd-input').type('qa manual tester')
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-textarea')
+        .type('We are looking for a  detail-oriented Manual QA Engineer to ensure' +
+            'the quality of our web and mobile applications. The role involves writing and' +
+             'executing test cases, performing exploratory testing, identifyin')
+        
+        cy.get('input.oxd-file-input').attachFile('Profile.pdf', { force: true });
+        cy.get(':nth-child(4) > .oxd-input-group > :nth-child(2) > .oxd-textarea')
+        .type('We are looking for a  detail-oriented Manual QA Engineer to ensure')
+        cy.get('.oxd-button--secondary').click();
+
+})
+
+Cypress.Commands.add('deletejob', (jobname) => {
+
+  //click delete button
+        cy.get('.orangehrm-container', { timeout: 5000 })
+        .contains('div', jobname).closest('div.oxd-table-row')           
+        .find('.oxd-table-cell-actions button').first().click()
+
+        cy.get('.oxd-button--label-danger').click()
+        cy.contains('.orangehrm-container div', jobname, {timeout:5000}).should('not.exist')
+
+})
+
 
 
  
