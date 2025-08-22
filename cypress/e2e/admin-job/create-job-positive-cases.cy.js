@@ -103,6 +103,8 @@ describe('admin create job', () => {
         cy.contains('.orangehrm-container','testing, identifyin',{timeout:5000})
         .should('include.text', 'testing, identifyin')
 
+        cy.deletejob(jobtext);
+
     })
 
     it('click show less', () => {
@@ -120,7 +122,7 @@ describe('admin create job', () => {
         cy.get('.orangehrm-container',{timeout:5000})
         .should('not.include.text', 'testing, identifyin')
 
-        cy.deletejob();
+        cy.deletejob(jobtext);
 
     })
 
