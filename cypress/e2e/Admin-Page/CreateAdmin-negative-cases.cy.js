@@ -67,9 +67,11 @@ describe('change admin password', () => {
     
     })
 
-    it.only('delete admin user', () => {
+    it('delete admin user', () => {
 
         cy.loginapp('Admin','admin123');
+
+
 
          cy.get(':nth-child(1) > .oxd-main-menu-item').click()
 
