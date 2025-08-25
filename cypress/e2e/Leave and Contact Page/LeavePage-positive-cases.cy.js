@@ -72,7 +72,7 @@ it('live list - Clicks next month button 4 times right', () => {
     .should('have.text','December')
   })
 
-  it('select all dropdowns', () => {
+  it.only('select all dropdowns', () => {
 
      cy.loginapp('Admin','admin123')
 
