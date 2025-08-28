@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 import Login from '../../../PageObject/LoginPage.js'
-
+import { rendomname } from '../../support/generate.name.js'
 
 describe('admin create job', () => {
 
@@ -124,6 +124,29 @@ describe('admin create job', () => {
 
         cy.deletejob(jobtext);
 
+    })
+
+
+     it('delete all job with check box', () => {
+        
+        cy.createjob();
+        cy.wait(5000)
+
+        cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+        cy.get('.oxd-dropdown-menu').find('li').eq(0).click()
+        cy.get('.oxd-button').click()
+        cy.get(':nth-child(2) > .oxd-input').type('test201')
+        cy.get('.oxd-button--secondary').click();
+        cy.get('.oxd-table-row > :nth-child(1) > .oxd-checkbox-wrapper > label > .oxd-checkbox-input > .oxd-icon')
+        .click();
+        cy.get('.orangehrm-horizontal-padding > div > .oxd-button').click()
+        cy.get('.orangehrm-modal-footer > .oxd-button--label-danger').click();
+        cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+        cy.get('.oxd-dropdown-menu').find('li').eq(0).click() 
+        
+        cy.contains('.oxd-text--toast-message', 'No Records Found').should('be.visible')
+        
+         
     })
 
 

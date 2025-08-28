@@ -16,6 +16,8 @@
 
 /// <reference types="cypress" />
 import 'cypress-file-upload'
+import {rendomname} from './generate.name.js'
+
 
 Cypress.Commands.add('login', (email) => {
   cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
@@ -32,7 +34,7 @@ Cypress.Commands.add("loginapp", (email,password) => {
   cy.get('[type="submit"]').click()
 })
 
-//-------------------
+//------------------- selectDropdown
  export function selectDropdown(selector, optiontext){
     cy.get(selector).click();
     if(optiontext) {
@@ -41,7 +43,7 @@ Cypress.Commands.add("loginapp", (email,password) => {
 }
 
 
-//------------------
+//------------------ createAdminUser
 
 Cypress.Commands.add('createAdminUser', () => {
 
@@ -83,6 +85,8 @@ Cypress.Commands.add('createAdminUser', () => {
       .should('be.visible');
 });
 
+//------------- createjob
+
 Cypress.Commands.add('createjob',() => {
 
   cy.get(':nth-child(1) > .oxd-main-menu-item').click()
@@ -106,6 +110,8 @@ Cypress.Commands.add('createjob',() => {
 
 })
 
+//--------------------------- deletejob
+
 Cypress.Commands.add('deletejob', (jobname) => {
 
   //click delete button
@@ -118,6 +124,47 @@ Cypress.Commands.add('deletejob', (jobname) => {
 
 })
 
+//---------------------- logout
+Cypress.Commands.add('logout', () => {
 
+  cy.get('.oxd-userdropdown-tab').click()
+  cy.get(':nth-child(4) > .oxd-userdropdown-link').click()
+  cy.contains('.oxd-text--h5', 'Login').should('be.visible')
+})
+
+
+Cypress.Commands.add('createPayGrandes', () => {
+
+   const grandesname = rendomname();
+   Cypress.env('Grandesname', grandesname)
+
+    // add pay grande name  
+        cy.get(':nth-child(1) > .oxd-main-menu-item').click()
+        cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+        cy.get('.oxd-dropdown-menu').find('li').eq(1).click()
+        cy.get('.oxd-button').click()
+        cy.get(':nth-child(2) > .oxd-input').type(grandesname)
+        cy.get('.oxd-button--secondary').click()
+    // add currenciess
+        cy.get('.orangehrm-action-header > .oxd-button').click()
+        cy.get('.oxd-select-text').click()
+        cy.get('div.oxd-select-dropdown')
+        .contains('AFN - Afghanistan Afghani').click()
+
+        cy.get(':nth-child(2) > .oxd-grid-2 > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('5000')
+        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input')
+        .type('10000')
+        cy.get(':nth-child(2) > .oxd-form > .oxd-form-actions > .oxd-button--secondary').click()
+
+
+    //check result of currrencies
+        cy.contains('.oxd-table-card > .oxd-table-row', 'Afghanistan Afghani')
+        .should('be.visible')
+
+        cy.get('.oxd-form-actions > .oxd-button--secondary').click()
+        cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
+        cy.get('.oxd-dropdown-menu').find('li').eq(1).click()
+})
 
  
