@@ -48,9 +48,6 @@ describe('pay grandes', () => {
         cy.get(':nth-child(2) > .oxd-topbar-body-nav-tab-item').click()
         cy.get('.oxd-dropdown-menu').find('li').eq(1).click()
         cy.contains('.oxd-table-body', 'test grandes').should('not.exist')
-
-
-        
         
     })
 
